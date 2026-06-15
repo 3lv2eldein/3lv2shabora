@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>دعوة خطوبة - محمد & زهرة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', 'Amiri', serif; background: #1a1a2e; min-height: 100vh; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        .door-section { position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(180deg, #0d1b2a 0%, #1b263b 50%, #2d4a3e 100%); overflow: hidden; }
+        .night-sky { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at 20% 20%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(ellipse at 80% 30%, rgba(255,215,0,0.05) 0%, transparent 40%); }
+        .stars { position: absolute; width: 100%; height: 100%; background-image: radial-gradient(2px 2px at 20px 30px, white, transparent), radial-gradient(2px 2px at 40px 70px, white, transparent), radial-gradient(1px 1px at 90px 40px, white, transparent), radial-gradient(2px 2px at 160px 120px, white, transparent), radial-gradient(1px 1px at 230px 80px, white, transparent), radial-gradient(2px 2px at 300px 50px, white, transparent), radial-gradient(1px 1px at 350px 150px, white, transparent), radial-gradient(2px 2px at 450px 90px, white, transparent), radial-gradient(1px 1px at 500px 180px, white, transparent), radial-gradient(2px 2px at 600px 60px, white, transparent), radial-gradient(1px 1px at 700px 140px, white, transparent), radial-gradient(2px 2px at 800px 100px, white, transparent); animation: twinkle 3s ease-in-out infinite alternate; }
+        @keyframes twinkle { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+        .lang-switch { position: absolute; top: 20px; left: 20px; z-index: 100; background: rgba(0,0,0,0.6); border: 1px solid rgba(212,175,55,0.4); color: #d4af37; padding: 8px 16px; border-radius: 20px; font-size: 14px; cursor: pointer; font-family: 'Cairo', sans-serif; transition: all 0.3s; }
+        .lang-switch:hover { background: rgba(212,175,55,0.2); }
+        .door-title { position: absolute; top: 40px; width: 100%; text-align: center; z-index: 20; color: #F5E6C8; padding: 0 20px; }
+        .door-title .families { font-size: 14px; font-style: italic; opacity: 0.9; margin-bottom: 5px; font-family: 'Amiri', serif; }
+        .door-title .names { font-size: 32px; font-weight: 700; color: #D4AF37; text-shadow: 0 2px 10px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3); letter-spacing: 2px; font-family: 'Amiri', serif; }
+        .door-title .invite-text { font-size: 13px; margin-top: 8px; opacity: 0.85; font-style: italic; font-family: 'Amiri', serif; }
+        .door-container { position: relative; width: 320px; height: 500px; margin-top: 80px; }
+        .door-frame { position: absolute; width: 100%; height: 100%; background: linear-gradient(180deg, #8B6914 0%, #D4AF37 30%, #B8860B 60%, #8B6914 100%); border-radius: 160px 160px 0 0; box-shadow: 0 0 30px rgba(212,175,55,0.3), inset 0 0 20px rgba(0,0,0,0.3); padding: 8px; }
+        .door-frame-inner { width: 100%; height: 100%; background: linear-gradient(180deg, #6B4E0A 0%, #8B6914 50%, #6B4E0A 100%); border-radius: 152px 152px 0 0; position: relative; overflow: hidden; }
+        .door-light { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0%; height: 100%; background: linear-gradient(180deg, rgba(255,248,220,0.95) 0%, rgba(255,235,180,0.8) 30%, rgba(255,215,100,0.6) 60%, rgba(255,200,50,0.3) 100%); border-radius: 152px 152px 0 0; transition: width 3s ease-in-out; z-index: 5; }
+        .door-light.open { width: 90%; }
+        .door-left, .door-right { position: absolute; top: 0; width: 50%; height: 100%; background: linear-gradient(180deg, #A0781A 0%, #C9A227 30%, #B8960B 70%, #8B6914 100%); border: 2px solid #6B4E0A; z-index: 10; transition: transform 3s ease-in-out; overflow: hidden; }
+        .door-left { left: 0; border-radius: 152px 0 0 0; transform-origin: left center; }
+        .door-right { right: 0; border-radius: 0 152px 0 0; transform-origin: right center; }
+        .door-left.open { transform: perspective(800px) rotateY(-75deg); }
+        .door-right.open { transform: perspective(800px) rotateY(75deg); }
+        .door-panel { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70%; height: 60%; border: 3px solid #6B4E0A; border-radius: 10px; background: linear-gradient(180deg, rgba(255,248,220,0.3) 0%, rgba(212,175,55,0.2) 100%); }
+        .door-panel::before { content: ''; position: absolute; top: 10%; left: 50%; transform: translateX(-50%); width: 60%; height: 30%; border: 2px solid #6B4E0A; border-radius: 5px; background: rgba(255,248,220,0.2); }
+        .door-handle { position: absolute; top: 50%; width: 12px; height: 40px; background: linear-gradient(180deg, #D4AF37, #8B6914); border-radius: 6px; z-index: 15; }
+        .door-left .door-handle { right: 15px; }
+        .door-right .door-handle { left: 15px; }
+        .crest { position: absolute; top: 15%; left: 50%; transform: translateX(-50%); width: 60px; height: 70px; z-index: 12; }
+        .crest svg { width: 100%; height: 100%; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+        .lantern { position: absolute; width: 25px; height: 40px; background: linear-gradient(180deg, #8B6914, #D4AF37); border-radius: 5px 5px 15px 15px; z-index: 3; }
+        .lantern::before { content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%); width: 15px; height: 10px; background: #6B4E0A; border-radius: 3px; }
+        .lantern-glow { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 15px; height: 20px; background: radial-gradient(ellipse, rgba(255,200,100,0.9), rgba(255,150,50,0.4)); border-radius: 50%; animation: lanternFlicker 2s ease-in-out infinite alternate; }
+        @keyframes lanternFlicker { 0% { opacity: 0.7; transform: translateX(-50%) scale(0.9); } 100% { opacity: 1; transform: translateX(-50%) scale(1.1); } }
+        .path { position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 100px; height: 30px; background: repeating-linear-gradient(90deg, #8B7355 0px, #A0826D 15px, #8B7355 30px); border-radius: 0 0 50% 50%; z-index: 1; }
+        .knock-btn { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); background: rgba(212,175,55,0.2); border: 1px solid rgba(212,175,55,0.5); color: #D4AF37; padding: 12px 35px; border-radius: 25px; font-size: 16px; cursor: pointer; z-index: 20; font-family: 'Cairo', sans-serif; transition: all 0.3s; display: flex; align-items: center; gap: 8px; }
+        .knock-btn:hover { background: rgba(212,175,55,0.4); transform: translateX(-50%) scale(1.05); }
+        .knock-btn.hidden { opacity: 0; pointer-events: none; }
+        .door-icon { width: 20px; height: 20px; }
+        .petals { position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: 15; overflow: hidden; }
+        .petal { position: absolute; width: 10px; height: 10px; background: radial-gradient(ellipse, rgba(255,150,150,0.8), rgba(255,100,100,0.4)); border-radius: 50% 0 50% 50%; animation: fall linear infinite; }
+        @keyframes fall { 0% { transform: translateY(-10px) rotate(0deg) translateX(0); opacity: 1; } 100% { transform: translateY(500px) rotate(720deg) translateX(50px); opacity: 0; } }
+        .details-section { display: none; min-height: 100vh; background: linear-gradient(180deg, #E8DFD0 0%, #F5F0E8 50%, #E8DFD0 100%); padding: 40px 20px; position: relative; }
+        .details-section.active { display: block; animation: fadeIn 1s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .details-inner { max-width: 500px; margin: 0 auto; text-align: center; }
+        .details-crest { width: 80px; height: 90px; margin: 0 auto 20px; }
+        .details-crest svg { width: 100%; height: 100%; }
+        .details-title { font-family: 'Amiri', serif; margin-bottom: 30px; }
+        .details-title .families-text { font-size: 16px; color: #6B5B4F; font-style: italic; margin-bottom: 8px; }
+        .details-title .couple-names { font-size: 36px; font-weight: 700; color: #8B6914; text-shadow: 0 2px 4px rgba(0,0,0,0.1); letter-spacing: 3px; margin-bottom: 10px; }
+        .details-title .invite-text { font-size: 16px; color: #6B5B4F; font-style: italic; }
+        .details-title .ceremony-type { font-size: 20px; color: #8B6914; margin-top: 15px; font-weight: 600; font-family: 'Cairo', sans-serif; }
+        .divider { width: 60%; height: 2px; background: linear-gradient(90deg, transparent, #D4AF37, transparent); margin: 15px auto; }
+        .info-card { background: rgba(255,255,255,0.7); border-radius: 20px; padding: 25px; margin: 15px auto; max-width: 400px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border: 1px solid rgba(212,175,55,0.2); }
+        .info-icon { width: 40px; height: 40px; margin: 0 auto 10px; }
+        .info-icon svg { width: 100%; height: 100%; }
+        .info-label { font-size: 13px; color: #B8A88A; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 5px; font-family: 'Cairo', sans-serif; }
+        .info-value { font-size: 22px; color: #4A4035; font-weight: 600; font-family: 'Cairo', sans-serif; }
+        .venue-card { background: rgba(255,255,255,0.7); border-radius: 20px; padding: 25px; margin: 15px auto; max-width: 400px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border: 1px solid rgba(212,175,55,0.2); }
+        .venue-icon { width: 40px; height: 40px; margin: 0 auto 10px; }
+        .venue-icon svg { width: 100%; height: 100%; }
+        .venue-label { font-size: 13px; color: #B8A88A; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 5px; font-family: 'Cairo', sans-serif; }
+        .venue-value { font-size: 20px; color: #4A4035; font-weight: 600; font-family: 'Cairo', sans-serif; }
+        .rsvp-section { margin-top: 30px; padding: 30px 20px; }
+        .rsvp-title { font-size: 14px; color: #B8A88A; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 25px; position: relative; display: inline-block; }
+        .rsvp-title::before, .rsvp-title::after { content: ''; position: absolute; top: 50%; width: 50px; height: 1px; background: linear-gradient(90deg, #D4AF37, transparent); }
+        .rsvp-title::before { right: calc(100% + 15px); }
+        .rsvp-title::after { left: calc(100% + 15px); background: linear-gradient(90deg, transparent, #D4AF37); }
+        .form-group { margin-bottom: 20px; text-align: right; }
+        .form-group label { display: block; font-size: 13px; color: #8B7355; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; font-family: 'Cairo', sans-serif; }
+        .form-group input[type="text"], .form-group textarea { width: 100%; max-width: 400px; padding: 15px; border: 1px solid #D4C4A8; border-radius: 10px; background: rgba(255,255,255,0.8); font-family: 'Cairo', sans-serif; font-size: 16px; color: #4A4035; transition: all 0.3s; }
+        .form-group input[type="text"]:focus, .form-group textarea:focus { outline: none; border-color: #D4AF37; box-shadow: 0 0 10px rgba(212,175,55,0.2); }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+        .radio-group { display: flex; flex-direction: column; gap: 12px; max-width: 400px; margin: 0 auto; }
+        .radio-option { display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 10px; border-radius: 10px; transition: background 0.3s; }
+        .radio-option:hover { background: rgba(212,175,55,0.1); }
+        .radio-option input[type="radio"] { width: 22px; height: 22px; accent-color: #8B6914; cursor: pointer; flex-shrink: 0; }
+        .radio-option span { font-size: 16px; color: #4A4035; font-family: 'Cairo', sans-serif; }
+        .submit-btn { background: linear-gradient(135deg, #B8960B, #D4AF37); color: white; border: none; padding: 15px 50px; border-radius: 30px; font-size: 18px; font-weight: 600; cursor: pointer; margin-top: 20px; font-family: 'Cairo', sans-serif; box-shadow: 0 4px 15px rgba(184,150,11,0.3); transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(184,150,11,0.4); }
+        .submit-btn:active { transform: translateY(0); }
+        .btn-icon { width: 20px; height: 20px; }
+        .btn-icon svg { width: 100%; height: 100%; fill: white; }
+        .footer-text { margin-top: 40px; font-size: 14px; color: #B8A88A; font-family: 'Amiri', serif; font-style: italic; }
+        .success-message { display: none; background: rgba(45,125,45,0.9); color: white; padding: 20px; border-radius: 15px; margin-top: 20px; font-size: 18px; animation: fadeIn 0.5s ease; }
+        .success-message.show { display: block; }
+        @media (max-width: 480px) { .door-container { width: 260px; height: 420px; } .door-title .names { font-size: 26px; } .details-title .couple-names { font-size: 28px; } .info-value, .venue-value { font-size: 18px; } .door-title { top: 20px; } .door-container { margin-top: 100px; } }
+    </style>
+</head>
+<body>
+    <section class="door-section" id="doorSection">
+        <div class="night-sky"></div>
+        <div class="stars"></div>
+        <button class="lang-switch" onclick="toggleLang()">العربية / EN</button>
+        <div class="door-title">
+            <div class="families">مع أسرهمما</div>
+            <div class="names">محمد & زهرة</div>
+            <div class="invite-text">يدعوانكم لحضور الاحتفال بخطوبتهما</div>
+        </div>
+        <div class="door-container">
+            <div class="door-frame">
+                <div class="door-frame-inner">
+                    <div class="door-light" id="doorLight"></div>
+                    <div class="door-left" id="doorLeft">
+                        <div class="door-panel"></div>
+                        <div class="door-handle"></div>
+                    </div>
+                    <div class="door-right" id="doorRight">
+                        <div class="door-panel"></div>
+                        <div class="door-handle"></div>
+                    </div>
+                    <div class="crest">
+                        <svg viewBox="0 0 60 70">
+                            <defs><linearGradient id="crestGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#D4AF37"/><stop offset="100%" style="stop-color:#8B6914"/></linearGradient></defs>
+                            <path d="M15,15 L20,5 L25,12 L30,3 L35,12 L40,5 L45,15 Z" fill="url(#crestGrad)" stroke="#6B4E0A" stroke-width="1"/>
+                            <path d="M10,20 Q30,15 50,20 L50,45 Q30,65 10,45 Z" fill="#1a365d" stroke="url(#crestGrad)" stroke-width="2"/>
+                            <text x="30" y="42" text-anchor="middle" fill="#D4AF37" font-size="18" font-family="serif" font-weight="bold">M</text>
+                            <text x="30" y="52" text-anchor="middle" fill="#D4AF37" font-size="12" font-family="serif">&</text>
+                            <text x="30" y="60" text-anchor="middle" fill="#D4AF37" font-size="14" font-family="serif">Z</text>
+                            <path d="M10,20 Q5,30 10,40" fill="none" stroke="url(#crestGrad)" stroke-width="1.5"/>
+                            <path d="M50,20 Q55,30 50,40" fill="none" stroke="url(#crestGrad)" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="lantern" style="left: -30px; bottom: 80px;"><div class="lantern-glow"></div></div>
+            <div class="lantern" style="right: -30px; bottom: 80px;"><div class="lantern-glow"></div></div>
+            <div class="lantern" style="left: -50px; bottom: 30px; transform: scale(0.8);"><div class="lantern-glow"></div></div>
+            <div class="lantern" style="right: -50px; bottom: 30px; transform: scale(0.8);"><div class="lantern-glow"></div></div>
+            <div class="path"></div>
+        </div>
+        <div class="petals" id="petals"></div>
+        <button class="knock-btn" id="knockBtn" onclick="openDoor()">
+            <svg class="door-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-5a2 2 0 0 1 4 0v5"/></svg>
+            اضغط هنا للدخول
+        </button>
+    </section>
+
+    <section class="details-section" id="detailsSection">
+        <div class="details-inner">
+            <div class="details-crest">
+                <svg viewBox="0 0 80 90">
+                    <defs><linearGradient id="crestGrad2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#D4AF37"/><stop offset="100%" style="stop-color:#8B6914"/></linearGradient></defs>
+                    <path d="M20,18 L27,5 L33,14 L40,3 L47,14 L53,5 L60,18 Z" fill="url(#crestGrad2)" stroke="#6B4E0A" stroke-width="1"/>
+                    <path d="M12,25 Q40,18 68,25 L68,55 Q40,82 12,55 Z" fill="#1a365d" stroke="url(#crestGrad2)" stroke-width="2.5"/>
+                    <text x="40" y="52" text-anchor="middle" fill="#D4AF37" font-size="24" font-family="serif" font-weight="bold">M</text>
+                    <text x="40" y="65" text-anchor="middle" fill="#D4AF37" font-size="14" font-family="serif">&</text>
+                    <text x="40" y="76" text-anchor="middle" fill="#D4AF37" font-size="18" font-family="serif">Z</text>
+                    <path d="M12,25 Q5,38 12,50" fill="none" stroke="url(#crestGrad2)" stroke-width="2"/>
+                    <path d="M68,25 Q75,38 68,50" fill="none" stroke="url(#crestGrad2)" stroke-width="2"/>
+                </svg>
+            </div>
+            <div class="details-title">
+                <div class="families-text">مع أسرهمما</div>
+                <div class="couple-names">محمد & زهرة</div>
+                <div class="invite-text">يدعوانكم لحضور الاحتفال بخطوبتهما</div>
+                <div class="ceremony-type">حفل الخطوبة</div>
+            </div>
+            <div class="divider"></div>
+            <div class="info-card">
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                        <text x="12" y="19" text-anchor="middle" fill="#8B6914" font-size="8" font-weight="bold">28</text>
+                    </svg>
+                </div>
+                <div class="info-label">التاريخ</div>
+                <div class="info-value">28 مايو 2026</div>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                </div>
+                <div class="info-label">الوقت</div>
+                <div class="info-value">8:00 مساءً</div>
+            </div>
+            <div class="venue-card">
+                <div class="venue-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-5a2 2 0 0 1 4 0v5"/>
+                    </svg>
+                </div>
+                <div class="venue-label">المكان</div>
+                <div class="venue-value">أمام منزل العروسة</div>
+            </div>
+            <div class="rsvp-section">
+                <div class="rsvp-title">تأكيد الحضور</div>
+                <form id="rsvpForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label>الاسم الكامل</label>
+                        <input type="text" name="name" placeholder="اكتب اسمك..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>الحضور</label>
+                        <div class="radio-group">
+                            <label class="radio-option"><input type="radio" name="attendance" value="yes" required><span>نعم، سأكون هناك 🙌</span></label>
+                            <label class="radio-option"><input type="radio" name="attendance" value="no"><span>للأسف لن أتمكن من الحضور</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>رسالة (اختياري)</label>
+                        <textarea name="message" placeholder="أطيب الأماني..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6" fill="none" stroke="white" stroke-width="2"/></svg></span>
+                        إرسال التأكيد
+                    </button>
+                </form>
+                <div class="success-message" id="successMessage">✅ تم إرسال تأكيد الحضور بنجاح! شكراً لك</div>
+            </div>
+            <div class="footer-text">محمد & زهرة · 2026</div>
+        </div>
+    </section>
+
+    <script>
+        let isEnglish = false;
+        const translations = {
+            ar: { families: 'مع أسرهمما', names: 'محمد & زهرة', invite: 'يدعوانكم لحضور الاحتفال بخطوبتهما', knock: 'اضغط هنا للدخول', ceremony: 'حفل الخطوبة', dateLabel: 'التاريخ', dateValue: '28 مايو 2026', timeLabel: 'الوقت', timeValue: '8:00 مساءً', venueLabel: 'المكان', venueValue: 'أمام منزل العروسة', rsvpTitle: 'تأكيد الحضور', fullName: 'الاسم الكامل', namePlaceholder: 'اكتب اسمك...', attendance: 'الحضور', yesAttend: 'نعم، سأكون هناك 🙌', noAttend: 'للأسف لن أتمكن من الحضور', message: 'رسالة (اختياري)', messagePlaceholder: 'أطيب الأماني...', send: 'إرسال التأكيد', success: '✅ تم إرسال تأكيد الحضور بنجاح! شكراً لك', footer: 'محمد & زهرة · 2026' },
+            en: { families: 'Together with their families', names: 'Mohamed & Zahra', invite: 'invite you to the celebration of their engagement', knock: 'Click here to enter', ceremony: 'Engagement Ceremony', dateLabel: 'DATE', dateValue: 'May 28, 2026', timeLabel: 'TIME', timeValue: '8:00 pm', venueLabel: 'VENUE', venueValue: "In front of the bride's house", rsvpTitle: 'RSVP', fullName: 'FULL NAME', namePlaceholder: 'Your name...', attendance: 'ATTENDANCE', yesAttend: "YES, I'LL BE THERE 🙌", noAttend: 'REGRETFULLY UNABLE TO ATTEND', message: 'MESSAGE (OPTIONAL)', messagePlaceholder: 'Your warm wishes...', send: 'SEND RSVP', success: '✅ RSVP sent successfully! Thank you', footer: 'Mohamed & Zahra · 2026' }
+        };
+        function toggleLang() {
+            isEnglish = !isEnglish;
+            const t = isEnglish ? translations.en : translations.ar;
+            document.querySelector('.door-title .families').textContent = t.families;
+            document.querySelector('.door-title .names').textContent = t.names;
+            document.querySelector('.door-title .invite-text').textContent = t.invite;
+            document.getElementById('knockBtn').childNodes[2].textContent = ' ' + t.knock;
+            document.querySelector('.details-title .families-text').textContent = t.families;
+            document.querySelector('.details-title .couple-names').textContent = t.names;
+            document.querySelector('.details-title .invite-text').textContent = t.invite;
+            document.querySelector('.details-title .ceremony-type').textContent = t.ceremony;
+            const cards = document.querySelectorAll('.info-card');
+            cards[0].querySelector('.info-label').textContent = t.dateLabel;
+            cards[0].querySelector('.info-value').textContent = t.dateValue;
+            cards[1].querySelector('.info-label').textContent = t.timeLabel;
+            cards[1].querySelector('.info-value').textContent = t.timeValue;
+            document.querySelector('.venue-card .venue-label').textContent = t.venueLabel;
+            document.querySelector('.venue-card .venue-value').textContent = t.venueValue;
+            document.querySelector('.rsvp-title').textContent = t.rsvpTitle;
+            document.querySelector('.form-group:nth-child(1) label').textContent = t.fullName;
+            document.querySelector('.form-group:nth-child(1) input').placeholder = t.namePlaceholder;
+            document.querySelector('.form-group:nth-child(2) label').textContent = t.attendance;
+            document.querySelector('.radio-option:nth-child(1) span').textContent = t.yesAttend;
+            document.querySelector('.radio-option:nth-child(2) span').textContent = t.noAttend;
+            document.querySelector('.form-group:nth-child(3) label').textContent = t.message;
+            document.querySelector('.form-group:nth-child(3) textarea').placeholder = t.messagePlaceholder;
+            document.querySelector('.submit-btn').childNodes[2].textContent = ' ' + t.send;
+            document.getElementById('successMessage').textContent = t.success;
+            document.querySelector('.footer-text').textContent = t.footer;
+            document.documentElement.dir = isEnglish ? 'ltr' : 'rtl';
+        }
+        function openDoor() {
+            document.getElementById('doorLeft').classList.add('open');
+            document.getElementById('doorRight').classList.add('open');
+            document.getElementById('doorLight').classList.add('open');
+            document.getElementById('knockBtn').classList.add('hidden');
+            const petalsContainer = document.getElementById('petals');
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const petal = document.createElement('div');
+                    petal.className = 'petal';
+                    petal.style.left = Math.random() * 100 + '%';
+                    petal.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    petal.style.animationDelay = Math.random() * 2 + 's';
+                    petalsContainer.appendChild(petal);
+                    setTimeout(() => petal.remove(), 5000);
+                }, i * 200);
+            }
+            setTimeout(() => {
+                document.getElementById('doorSection').style.display = 'none';
+                document.getElementById('detailsSection').classList.add('active');
+                window.scrollTo(0, 0);
+            }, 3500);
+        }
+        function handleSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            fetch('https://formspree.io/f/xnqevwdr', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.get('name'),
+                    attendance: formData.get('attendance') === 'yes' ? 'سأحضر' : 'لن أحضر',
+                    message: formData.get('message'),
+                    _replyto: 'mo7vmed3lv2@gmail.com'
+                })
+            }).then(() => {
+                document.getElementById('successMessage').classList.add('show');
+                e.target.reset();
+            }).catch(() => {
+                document.getElementById('successMessage').classList.add('show');
+                e.target.reset();
+            });
+        }
+    </script>
+</body>
+</html>
